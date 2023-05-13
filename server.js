@@ -34,8 +34,13 @@ app.get('/', (req, res) => {
     res.send('Welcome to the Pokemon App')
 })
 
-app.get('/pokemon', (req, res) => {
-    Pokemon.find({})
+app.get('/pokemon', async (req, res) => {
+    try {
+        const pokemon = await Pokemon.find()
+        res.render('Index', { pokemon })
+      } catch (error) {
+        console.error(error)
+      }
 })
 
 // Create
@@ -51,8 +56,15 @@ app.post('/pokemon', (req, res) => {
 
 // Show
 
-app.get('/pokemon/:id', (req, res) => {
-    Pokemon.findById(req.params.id)
+app.get('/pokemon/:id', async (req, res) => {
+        try{
+            
+            console.log(req.params.id)
+            const pokemon = await Pokemon.findById(req.params.id)
+            res.render('Show', { pokemon })
+        } catch(error) {
+            console.log(error)
+        }
     })
 
 

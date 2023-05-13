@@ -7,7 +7,7 @@ const React = require('react');
         const updatedPokemon = pokemon.map(pokemon => {
             const modifiedName = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
             return {
-                ...pokemon, // gets all of the original objects and properties but just modifies the name property
+                ...pokemon, // gets a copy of the original objects and properties but just modifies the name property
                 name: modifiedName
             }
         })
@@ -19,9 +19,9 @@ const React = require('react');
                   <div>
                       <h1>Pokemon Index Page</h1>
                       <ul>
-                        {updatedPokemon.map((pokemon, i) => {
+                        {updatedPokemon.map((pokemon) => {
                             return (
-                                <li><a href={`/pokemon/${i}`}>{pokemon.name}</a></li>
+                                <li><a href={`/pokemon/${pokemon.id}`}>{pokemon.name}</a></li>
                             )
                         })}
                       </ul>
